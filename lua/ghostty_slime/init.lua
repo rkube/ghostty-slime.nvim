@@ -154,9 +154,12 @@ function M.setup(opts)
     end, { desc = "Ghostty Slime Send Cell", silent = true })
   end
   if km.send_selection then
-    vim.keymap.set("x", km.send_selection, function()
-      M.send("selection")
-    end, { desc = "Ghostty Slime Send Selection", silent = true })
+    vim.keymap.set(
+      "x",
+      km.send_selection,
+      ":<C-u>lua require('ghostty_slime').send('selection')<CR>",
+      { desc = "Ghostty Slime Send Selection", silent = true }
+    )
   end
   if km.send_file then
     vim.keymap.set("n", km.send_file, function()
